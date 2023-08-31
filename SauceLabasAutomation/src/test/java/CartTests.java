@@ -40,4 +40,24 @@ public class CartTests extends BaseTest{
         cartPage.removeProduct("Sauce Labs Fleece Jacket");
         Assertions.assertFalse(cartPage.isProductDisplayed("Sauce Labs Fleece Jacket"));
     }
+
+    @Test
+    public void verifyInfoOfAddedProductsTest() {
+        LoginPage loginPage = new LoginPage(DriverManager.getDriver().driver);
+        loginPage.setUserNameTextBox("standard_user");
+        loginPage.setPasswordTextBox("secret_sauce");
+        loginPage.clickOnLoginButton();
+
+        HomePage homePage = new HomePage(DriverManager.getDriver().driver);
+        homePage.addProductToCart("Sauce Labs Bike Light");
+        homePage.addProductToCart("Sauce Labs Fleece Jacket");
+        homePage.addProductToCart("Sauce Labs Onesie");
+        homePage.clickOnCartIconButton();
+
+        CartPage cartPage = new CartPage(DriverManager.getDriver().driver);
+
+        //Se verifica que la información de cada producto en la página del carrito
+        //sea igual a su información en su página de producto correspondiente
+        Assertions.assertTrue(cartPage.isCorrectTheInfoOfEveryProduct());
+    }
 }

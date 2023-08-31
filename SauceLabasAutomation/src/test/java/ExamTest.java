@@ -28,7 +28,7 @@ public class ExamTest extends BaseTest{
 
         //Se verifica que el precio de cada producto en la página del carrito
         //sea igual a su precio en su página de producto correspondiente
-        Assertions.assertTrue(cartPage.isCorrectThePriceOfEveryProduct());
+        Assertions.assertTrue(cartPage.isCorrectTheInfoOfEveryProduct());
         //Se verifica que el ícono del carrito tiene el número de productos agregados
         Assertions.assertTrue(cartPage.isTextEqualToInCartIcon("3"));
 
@@ -36,8 +36,8 @@ public class ExamTest extends BaseTest{
         cartPage.removeProduct("Sauce Labs Fleece Jacket");
         cartPage.removeProduct("Sauce Labs Onesie");
 
-        //Se verifica que los ítems removidos no aparezcan en la lista de productos
-        //de la página del carrito
+        //Se verifica que la información de cada producto en la página del carrito
+        //sea igual a su información en su página de producto correspondiente
         Assertions.assertFalse(cartPage.isProductDisplayed("Sauce Labs Bike Light"));
         Assertions.assertFalse(cartPage.isProductDisplayed("Sauce Labs Fleece Jacket"));
         Assertions.assertFalse(cartPage.isProductDisplayed("Sauce Labs Onesie"));

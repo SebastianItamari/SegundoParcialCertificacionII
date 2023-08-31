@@ -13,6 +13,12 @@ public class ProductPage {
     @FindBy(className = "inventory_details_price")
     WebElement productPrice;
 
+    @FindBy(xpath = "//div[@class='inventory_details_name large_size']")
+    WebElement productName;
+
+    @FindBy(xpath = "//div[@class='inventory_details_desc large_size']")
+    WebElement productDescription;
+
     public ProductPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -21,5 +27,15 @@ public class ProductPage {
     public String getPrice()
     {
         return  productPrice.getText();
+    }
+
+    public String getName()
+    {
+        return  productName.getText();
+    }
+
+    public String getDescription()
+    {
+        return  productDescription.getText();
     }
 }

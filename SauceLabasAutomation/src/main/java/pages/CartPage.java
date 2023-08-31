@@ -51,8 +51,10 @@ public class CartPage {
         return cartIconContainer.getText().equalsIgnoreCase(text);
     }
 
-    public boolean isCorrectThePriceOfEveryProduct() {
+    public boolean isCorrectTheInfoOfEveryProduct() {
         List<String> prices = new ArrayList<>();
+        List<String> names = new ArrayList<>();
+        List<String> descriptions = new ArrayList<>();
 
         for (int i = 0; i < driver.findElements(By.className("inventory_item_name")).size(); i++) {
             //Se utiliza el driver.findElements en cada iteración para evitar el error:
@@ -62,17 +64,21 @@ public class CartPage {
             element.click();
             ProductPage productPage = new ProductPage(DriverManager.getDriver().driver);
             prices.add(productPage.getPrice());
+            names.add(productPage.getName());
+            descriptions.add(productPage.getDescription());
             cartIconContainer.click();
         }
 
+        List<WebElement> elementsNames = driver.findElements(By.className("inventory_item_name"));
         List<WebElement> elementsPrices = driver.findElements(By.className("inventory_item_price"));
-        for(WebElement element: elementsPrices)
+        List<WebElement> elementsDescriptions = driver.findElements(By.xpath("//div[@class='inventory_item_desc']"));
+
+        for (int i = 0; i < prices.size(); i++)
         {
-            if(!element.getText().equals(prices.get(0)))
+            if(!elementsPrices.get(i).getText().equals(prices.get(i))|| !elementsNames.get(i).getText().equals(names.get(i)) || !elementsDescriptions.get(i).getText().equals(descriptions.get(i)))
             {
                 return false;
             }
-            prices.remove(0);
         }
         return true;
     }
