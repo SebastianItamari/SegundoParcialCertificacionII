@@ -34,15 +34,14 @@ public class CheckoutOverviewPage {
     }
 
     public boolean isTotalPriceCorrect(){
-        List<Double> prices = new ArrayList<>();
         double sum = Double.parseDouble(taxPrice.getText().substring(6));
 
         for(WebElement element: productsPrices){
             double aux = Double.parseDouble(element.getText().substring(1));
-            prices.add(aux);
             sum += aux;
         }
 
+        //sum += 2.5;
         return (sum == Double.parseDouble(totalPrice.getText().substring(8)));
     }
 }

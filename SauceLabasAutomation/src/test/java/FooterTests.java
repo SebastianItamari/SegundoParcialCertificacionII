@@ -15,6 +15,7 @@ public class FooterTests extends BaseTest{
         HomePage homePage = new HomePage(DriverManager.getDriver().driver);
         homePage.clickOnFacebookButton();
         Assertions.assertTrue(homePage.verifyNewOpenWindowURL("https://www.facebook.com/saucelabs", DriverManager.getDriver().driver.getWindowHandle()));
+        //Assertions.assertTrue(homePage.verifyNewOpenWindowURL("https://www.google.com", DriverManager.getDriver().driver.getWindowHandle()));
     }
 
     @Test

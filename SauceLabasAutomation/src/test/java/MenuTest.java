@@ -14,10 +14,12 @@ public class MenuTest extends BaseTest{
 
         HomePage homePage = new HomePage(DriverManager.getDriver().driver);
         homePage.addProductToCart("Sauce Labs Backpack");
+        homePage.addProductToCart("Sauce Labs Onesie");
         homePage.clickOnMenuButton();
         homePage.clickOnResetAppStateButton();
         Assertions.assertTrue(homePage.isTextEqualToInCartIcon(""));
         //homePage.removeProduct("Sauce Labs Backpack");
+        //homePage.removeProduct("Sauce Labs Onesie");
         Assertions.assertFalse(homePage.someAddButtonExist());
     }
 }

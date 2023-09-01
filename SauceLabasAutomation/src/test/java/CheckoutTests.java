@@ -6,7 +6,7 @@ import utilities.DriverManager;
 public class CheckoutTests extends BaseTest{
 
     @Test
-    public void doNotContinueWithEmptyFields(){
+    public void errorMessageIsDisplayedWithEmptyFields(){
         LoginPage loginPage = new LoginPage(DriverManager.getDriver().driver);
         loginPage.setUserNameTextBox("standard_user");
         loginPage.setPasswordTextBox("secret_sauce");
@@ -21,8 +21,8 @@ public class CheckoutTests extends BaseTest{
 
         CheckoutInformationPage checkoutInformationPage = new CheckoutInformationPage(DriverManager.getDriver().driver);
         checkoutInformationPage.setFirstNameTextBox("Sebastián");
-        checkoutInformationPage.setLastNameTextBox("");
-        checkoutInformationPage.setZipCodeTextBox("1234");
+        checkoutInformationPage.setLastNameTextBox("Itamari");
+        checkoutInformationPage.setZipCodeTextBox("");
         checkoutInformationPage.clickOnContinueButton();
         Assertions.assertTrue(checkoutInformationPage.existErrorMessageLabel());
         Assertions.assertTrue(checkoutInformationPage.isErrorTextDisplayed("Error: First Name is required") || checkoutInformationPage.isErrorTextDisplayed("Error: Last Name is required") || checkoutInformationPage.isErrorTextDisplayed("Error: Postal Code is required"));
